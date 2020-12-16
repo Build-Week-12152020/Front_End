@@ -1,0 +1,28 @@
+{
+  "name": "front_end",
+  "version": "1.0.0",
+  "description": "Front_End",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Build-Week-12152020/front_end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Build-Week-12152020/front_end/issues"
+  },
+  "homepage": "https://github.com/Build-Week-12152020/front_end#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.1",
+    "yup": "^0.32.8"
+  }
+}
