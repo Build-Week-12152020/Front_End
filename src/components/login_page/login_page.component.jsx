@@ -1,10 +1,15 @@
 import React from 'react'
-import Wrapper from './login_page.component'
+import styled from 'styled-components'
 
 import Login from './login.component'
 import Registration from './registration.component'
 
-import './login_page.styles'
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid black;
+`
 
 const LoginPage = () => (
     <Wrapper>
