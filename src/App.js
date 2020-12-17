@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import PrivateRoute from "./components/PrivateRoute";
-import LoginPage from './components/login_page/login_page.component'
+import LoginPage from './components/login_page/login_page.component';
+import AddFriend from './components/AddPlantForm';
 import './App.css'
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
                 {/* main content */}
                 <div className="main-content">
                     <Switch>
-                        {/* <PrivateRoute exact path="/myplants" component={PlantList} /> */}
+                        <PrivateRoute exact path="/add" component={AddFriend} />
                         <Route path="/login" component={LoginPage} />
                     </Switch>
                 </div>
