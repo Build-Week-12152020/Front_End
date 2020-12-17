@@ -1,5 +1,14 @@
 import React from 'react'
-import Wrapper from './login.styles'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    width: 50%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid red;
+`
 
 const Login = () => {
     return (

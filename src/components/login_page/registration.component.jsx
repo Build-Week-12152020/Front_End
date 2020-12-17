@@ -1,5 +1,14 @@
 import React from 'react'
-import Wrapper from './registration.styles'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    width: 50%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid blue;
+`
 
 const Registration = () => {
     return (
