@@ -14,12 +14,30 @@ const Registration = () => {
     return (
         <Wrapper>
             <form>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" placeholder="Name" />
+                <label htmlFor="username">
+                    Name
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Name" 
+                    />
+                </label>
+                
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" placeholder="Email" />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" placeholder="password" />
+                <label htmlFor="phone">
+                    Mobile Number
+                    <input
+                        type="number"
+                        id="phone"
+                        name="phone"
+                        value={loginCredentls.phone}
+                        onChange={handleChanges}
+                        placeholder="(123) 456-7890"
+                        />
+                </label>
                 <button>Register</button>
             </form>
         </Wrapper>

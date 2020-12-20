@@ -17,8 +17,7 @@ const Login = (props) => {
     // component level state
     const [loginCredentls, setLoginCredntls] = useState({
         username: "",
-        password: "",
-        phone: ""
+        password: ""
     });
 
     const handleChanges = (e) => {
@@ -35,8 +34,7 @@ const Login = (props) => {
         props.loginToApp(loginCredentls);
         setLoginCredntls({
             username: "",
-            password: "",
-            phone: ""
+            password: ""
         });
     };
 
@@ -65,19 +63,9 @@ const Login = (props) => {
                         placeholder="**********" 
                     />
                 </label>
-                <label htmlFor="phone">
-                    Mobile Number
-                    <input
-                        type="number"
-                        id="phone"
-                        name="phone"
-                        value={loginCredentls.phone}
-                        onChange={handleChanges}
-                        placeholder="(123) 456-7890"
-                        />
-                </label>
                 
-                <button>Sign In</button>
+                
+                <button>Log In</button>
             </form>
         </Wrapper>
     );
