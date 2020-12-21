@@ -1,5 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import { connect } from "react-redux";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     width: 50%;
@@ -11,29 +12,65 @@ const Wrapper = styled.div`
 `
 
 const Registration = () => {
+    // component level state
+    const [newUser, setNewUser] = useState({
+        username: "",
+        password: "",
+        phone: ""
+    });
+
+    const handleChanges = (e) => {
+        setNewUser({...newUser,
+        [e.target.name]: e.target.value
+        });
+        console.log(newUser);
+    }
+
+    const handleSubmit = (e) => {
+        // prevent default page reload
+        e.preventDefault();
+        // action from actions>index.js
+        setNewUser({
+            username: "",
+            password: "",
+            phone: ""
+        });
+    };
+
     return (
         <Wrapper>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
-                    Name
+                    Username
                     <input 
+                        id="username"
                         type="text" 
                         name="name" 
+                        value={newUser.username}
+                        onChange={handleChanges}
                         placeholder="Name" 
                     />
                 </label>
                 
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" placeholder="Email" />
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" placeholder="password" />
+                <label htmlFor="password">
+                    Password
+                    <input
+                        id="password"
+                        type="password" 
+                        name="password"
+                        value={newUser.password}
+                        onChange={handleChanges} 
+                        placeholder="********" 
+                    />
+                </label>
+                
                 <label htmlFor="phone">
                     Mobile Number
                     <input
-                        type="number"
                         id="phone"
+                        type="number"
                         name="phone"
-                        value={loginCredentls.phone}
+                        value={newUser.phone}
                         onChange={handleChanges}
                         placeholder="(123) 456-7890"
                         />

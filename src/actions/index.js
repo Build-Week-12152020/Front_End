@@ -9,12 +9,18 @@ export const DATA_LOAD_ERROR = "DATA_LOAD_ERROR";
 
 // BASE URL https://water-my-plants-tracker.herokuapp.com
 
+export const registerUser = (data) => (dispatch) => {
+    dispatch({
+        type: IS_LOADING_REGISTER
+    })
+}
+
 export const loginToApp = (data) => (dispatch) => {
     dispatch({
         type: IS_LOADING_LOGIN
     });
 
-    const loginURL = `https://water-my-plants-tracker.herokuapp.com/api/user/login`;
+    const loginURL = `https://water-my-plants-tracker.herokuapp.com/api/users/login`;
 
     axiosWithAuth()
         .post(loginURL, data)
@@ -24,4 +30,4 @@ export const loginToApp = (data) => (dispatch) => {
         .catch((err) => {
             console.error(err)
         })
-}
+};
