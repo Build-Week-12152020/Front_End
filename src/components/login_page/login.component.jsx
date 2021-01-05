@@ -1,24 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
-// import action here
-import styled from 'styled-components'
+import { loginToApp } from "../actions";
+import styled from 'styled-components';
+import * as Yup from 'yup';
 
 const Wrapper = styled.div`
-    width: 50%;
-    padding: 25px;
+width: 50%;
+padding: 25px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+form {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    border: 1px solid red;
+}
+button {
+    margin: 15px 0;
+    border: none;
+    background-color: #d3d3d3;
+    background-color: white;
+    border: 2px solid #d3d3d3;
+    &:hover {
+        background-color: #d3d3d3;
+        border: 2px solid black;
+    }
+    &:disabled {
+        border: 2px solid orange;
+        cursor: not-allowed;
+    }
+}
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+input {
+    border: 1px solid #d3d3d3;
+    text-align: center;
+}
 `
+
+const formSchema = Yup.object().shape({
+username: Yup.string().required('Username is required!'),
+password: Yup.string().required('Password is required!'),
+})
 
 const Login = (props) => {
 
     // component level state
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [loginCredentls, setLoginCredntls] = useState({
         username: "",
         password: ""
     });
+
+    
 
     const handleChanges = (e) => {
         setLoginCredntls({...loginCredentls,
@@ -38,8 +75,24 @@ const Login = (props) => {
         });
     };
 
+    const formSchema = Yup.object().shape({
+        username: Yup.string().required('Username is required!'),
+        password: Yup.string().required('Password is required!'),
+        })
+
+    useEffect(() => {
+                formSchema.isValid(loginCredentls).then((valid) => {
+                    setButtonDisabled(!valid)
+                })
+            }, [loginCredentls])
+
     return (
         <Wrapper>
+            <header className="form-header">
+                <h4>
+                    Login
+                </h4>
+            </header>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                     Username
@@ -49,7 +102,9 @@ const Login = (props) => {
                         name="username"
                         value={loginCredentls.username}
                         onChange={handleChanges} 
-                        placeholder="PlantLover123" 
+                        placeholder="PlantLover123"
+                        minLength="5"
+                        required 
                     />
                 </label>
                 <label htmlFor="password">
@@ -60,15 +115,74 @@ const Login = (props) => {
                         name="password"
                         value={loginCredentls.password}
                         onChange={handleChanges} 
-                        placeholder="**********" 
+                        placeholder="**********"
+                        minLength="8"
+                        required 
                     />
                 </label>
                 
                 
-                <button>Log In</button>
+                <button type="submit" disabled={buttonDisabled}>Log In</button>
             </form>
         </Wrapper>
     );
 };
 
 export default connect( () => null, {})(Login);
+
+
+
+
+
+
+// const Wrapper = styled.div`
+// width: 50%;
+// padding: 25px;
+// display: flex;
+// flex-direction: column;
+// justify-content: space-around;
+// form {
+//     display: flex;
+//     flex-direction: column;
+// }
+// button {
+//     margin: 15px 0;
+//     border: none;
+//     background-color: #d3d3d3;
+//     background-color: white;
+//     border: 2px solid #d3d3d3;
+//     &:hover {
+//         background-color: #d3d3d3;
+//         border: 2px solid black;
+//     }
+//     &:disabled {
+//         border: 2px solid orange;
+//         cursor: not-allowed;
+//     }
+// }
+// label {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: 10px 0;
+// }
+// input {
+//     border: 1px solid #d3d3d3;
+//     text-align: center;
+// }
+// `
+
+// const formSchema = Yup.object().shape({
+// username: Yup.string().required('Username is required!'),
+// password: Yup.string().required('Password is required!'),
+// })
+
+// const Login = () => {
+// const [form, setForm] = useState({ username: '', password: '' })
+// const [buttonDisabled, setButtonDisabled] = useState(true)
+
+// useEffect(() => {
+//     formSchema.isValid(form).then((valid) => {
+//         setButtonDisabled(!valid)
+//     })
+// }, [form])
