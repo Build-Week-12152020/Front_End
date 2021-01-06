@@ -15,7 +15,7 @@ export const DATA_LOAD_ERROR = "DATA_LOAD_ERROR";
 
 const loginURL = `https://water-my-plants-tracker.herokuapp.com/api/users/login/`;
 const regURL = `https://water-my-plants-tracker.herokuapp.com/api/users/register`;
-const plantsURL = `https://water-my-plants-tracker.herokuapp.com/api/` 
+const plantsURL = `https://water-my-plants-tracker.herokuapp.com/api/plants` 
 
 export const registerUser = (data) => (dispatch) => {
     dispatch({
@@ -71,5 +71,19 @@ export const loadPlantlist = (data) => (dispatch) => {
     });
 
     axiosWithAuth()
-        .get()
+        .get(plantsURL)
+        .then((res) => {
+            console.log(`ab: actions: loadPlantlist: res:`,res);
+            dispatch({
+                type: DATA_LOAD_SUCCESS,
+                payload: res.data.plants
+            })
+
+        })
+        .catch((err) => {
+            console.log(`ab: actions: loadPlanlist: err:`, err);
+            dispatch({
+                type: DATA_LOAD_ERROR
+            })
+        })
 }
