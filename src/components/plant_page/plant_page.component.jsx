@@ -18,7 +18,11 @@ const PlantPage = (props) => {
     },[]);
 
     return (
-    <section className="main_content">{
+    <section className="main_content">
+        <div className="user_greeting">
+    <h1>Hello {props.currentUser.username} !</h1>
+        </div>
+        {
         props.isLoadingPlants ? (
             <div className="plantlist_skeletons">
                 <Skeleton>
@@ -46,6 +50,7 @@ const mapStateToProps = (state) => {
     return {
         isLoadingPlants: state.is_loading_plants,
         plantlist: state.plantlist,
+        currentUser: state.current_user,
         error: state.error
     };
 };

@@ -174,7 +174,6 @@ const Registration = (props) => {
 const mapStateToProps = (state) => {
     return {
         isLoadingRegister: state.is_loading_register,
-        isRegister: state.isRegister,
         registerSuccess: state.register_success,
         error: state.error,
     }

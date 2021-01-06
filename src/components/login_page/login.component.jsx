@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from "react-redux";
 import { loginToApp } from "../actions";
 import styled from 'styled-components';
@@ -53,6 +54,8 @@ const Login = (props) => {
         password: ""
     });
 
+    const history = useHistory();
+
     
 
     const handleChanges = (e) => {
@@ -71,7 +74,7 @@ const Login = (props) => {
             username: "",
             password: ""
         });
-        this.props.history.push('./login');
+        history.push('/plantlist');
     };
 
     

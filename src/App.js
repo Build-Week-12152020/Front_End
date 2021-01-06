@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from './components/login_page/login_page.component';
-import PlantPage from './components/plant_page/plant_page.component'
+import PlantPage from './components/plant_page/plant_page.component';
 // import AddPlant from './components/AddPlantForm';
 
 import thunk from "redux-thunk";
