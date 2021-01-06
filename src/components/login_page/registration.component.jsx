@@ -3,7 +3,6 @@ import Skeleton from 'react-loading-skeleton';
 import { connect } from "react-redux";
 import { registerUser } from "../actions";
 import styled from 'styled-components';
-// import { initialState } from "../reducers/plantReducer";
 import * as Yup from 'yup';
 
 const Wrapper = styled.div`
@@ -48,9 +47,6 @@ const Registration = (props) => {
         });
     };
 
-    const redirect = (e) => {
-        this.props.history.push('/plantlist')
-    }
 
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Username is required!'),
@@ -188,7 +184,7 @@ export default connect( mapStateToProps, { registerUser })(Registration);
 
 
 
-{/* <header className="form-header">
+/* <header className="form-header">
                 <h4>
                     Sign Up
                 </h4>
@@ -230,4 +226,4 @@ export default connect( mapStateToProps, { registerUser })(Registration);
                         />
                 </label>
                 <button>Register</button>
-            </form> */}
+            </form> */

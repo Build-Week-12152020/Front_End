@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 export const IS_LOADING_LOGIN = "IS_LOADING_LOGIN";
