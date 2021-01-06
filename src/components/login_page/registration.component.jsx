@@ -75,7 +75,7 @@ const Registration = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('submitted', form)
+        // console.log('submitted', form)
         setForm({
             id: Date.now(),
             username: '',
@@ -92,7 +92,7 @@ const Registration = () => {
                 <label htmlFor="username">Username</label>
                 <input
                     type="text"
-                    id="username"
+                    id="reg_username"
                     name="username"
                     placeholder="Name"
                     onChange={changeHandler}
@@ -115,7 +115,7 @@ const Registration = () => {
                 <label htmlFor="password">Password</label>
                 <input
                     type="password"
-                    id="password"
+                    id="reg_password"
                     name="password"
                     placeholder="Password"
                     onChange={changeHandler}

@@ -64,19 +64,19 @@ const Login = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('submitted', form)
+        // console.log('submitted', form)
         setForm({ username: '', password: '' })
     }
     return (
         <Wrapper>
             <h2>Login</h2>
             <form onSubmit={submitHandler}>
-                <label htmlFor="username">username</label>
+                <label htmlFor="username">Username</label>
                 <input
                     type="username"
                     id="username"
                     name="username"
-                    placeholder="username"
+                    placeholder="Username"
                     onChange={changeHandler}
                     minLength="5"
                     required
@@ -86,7 +86,7 @@ const Login = () => {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     minLength="8"
                     onChange={changeHandler}
                     required
