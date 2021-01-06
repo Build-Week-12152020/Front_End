@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const LoginPage = () => (
     <Wrapper>
-        <Login />
+        <Login  />
         <Registration />
     </Wrapper>
 )
