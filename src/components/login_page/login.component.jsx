@@ -1,9 +1,12 @@
+
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { loginToApp } from "../actions";
 import styled from 'styled-components';
 import * as Yup from 'yup';
 import Skeleton from 'react-loading-skeleton';
+
+
 
 const Wrapper = styled.div`
 width: 50%;
@@ -14,6 +17,7 @@ justify-content: space-around;
 form {
     display: flex;
     flex-direction: column;
+
 }
 button {
     margin: 15px 0;
@@ -135,6 +139,7 @@ const Login = (props) => {
                 
                 
                 <button type="submit" disabled={buttonDisabled}>Log In</button>
+
             </form>
             }
         </Wrapper>
