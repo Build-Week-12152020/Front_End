@@ -50,7 +50,7 @@ export default function App() {
                     {/* main content */}
                     <div className="main-content">
                         <Switch>
-                            <PrivateRoute exact path="/add" component={LoginPage} />
+                            <PrivateRoute exact path="/login" component={LoginPage} />
                             <Route path="/login" component={LoginPage}  />
                         </Switch>
                     </div>

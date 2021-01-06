@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { connect } from "react-redux";
 import { registerUser } from "../actions";
 import styled from 'styled-components';
-import { initialState } from "../reducers/plantReducer";
+// import { initialState } from "../reducers/plantReducer";
 import * as Yup from 'yup';
 
 const Wrapper = styled.div`
@@ -75,7 +75,7 @@ const Registration = (props) => {
             </form>
         ) : props.error ? (
             <div className="error">{props.error}</div>
-        ) :  
+        ) :
         
             <form onSubmit={handleSubmit}>
                 <header className="form-header">

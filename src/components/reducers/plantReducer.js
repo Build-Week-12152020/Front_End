@@ -1,4 +1,4 @@
-import { IS_LOADING_LOGIN, IS_LOADING_REGISTER, IS_LOADING_PLANTS, DATA_LOAD_SUCCESS, DATA_LOAD_ERROR, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions";
+import { IS_LOADING_LOGIN, IS_LOADING_REGISTER, IS_LOADING_PLANTS, DATA_LOAD_SUCCESS, DATA_LOAD_ERROR, REGISTER_SUCCESS, REGISTER_FAILURE, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
 
 export const initialState = {
     is_loading_login: false,
@@ -20,6 +20,22 @@ const plantReducer = (state= initialState, action) => {
                 is_loading_login: true
             };
         }
+        case LOGIN_SUCCESS: {
+            return {
+                ...state,
+                is_loading_login: false,
+                login_success: true,
+                error: ""
+            }
+        }
+        case LOGIN_FAILURE: {
+            return {
+                ...state,
+                is_loading_login: false,
+                login_error: true,
+                error: action.payload
+            }
+        }
         case IS_LOADING_REGISTER: {
             return {
                 ...state,
@@ -29,12 +45,15 @@ const plantReducer = (state= initialState, action) => {
         case REGISTER_SUCCESS: {
             return {
                 ...state,
-                register_success: true
+                is_loading_register: false,
+                register_success: true,
+                error: ""
             }
         }
         case REGISTER_FAILURE: {
             return {
                 ...state,
+                is_loading_register: false,
                 register_error: true,
                 error: action.payload
             }
@@ -49,7 +68,8 @@ const plantReducer = (state= initialState, action) => {
             return {
                 ...state,
                 is_loading_plants: false,
-                plantlist: action.payload
+                plantlist: action.payload,
+                error: "",
             };
         }
         case DATA_LOAD_ERROR: {

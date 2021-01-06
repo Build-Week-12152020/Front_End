@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { loginToApp } from "../actions";
 import styled from 'styled-components';
 import * as Yup from 'yup';
+import Skeleton from 'react-loading-skeleton';
 
 const Wrapper = styled.div`
 width: 50%;
@@ -73,7 +74,10 @@ const Login = (props) => {
             username: "",
             password: ""
         });
+        this.props.history.push('./login');
     };
+
+    
 
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Username is required!'),
@@ -88,12 +92,23 @@ const Login = (props) => {
 
     return (
         <Wrapper>
-            <header className="form-header">
-                <h4>
-                    Login
-                </h4>
-            </header>
+            {
+                props.isLoadingLogin ? (
+                    <form>
+                        <Skeleton variant="rect" />
+                        <Skeleton variant="rect" />
+                        <Skeleton variant="rect" />
+                    </form>
+                ) : props.error ? (
+                <div className="error">{props.error}</div>
+                ) :
+                
             <form onSubmit={handleSubmit}>
+                <header className="form-header">
+                    <h4>
+                        Login
+                    </h4>
+                </header>
                 <label htmlFor="username">
                     Username
                     <input 
@@ -124,11 +139,21 @@ const Login = (props) => {
                 
                 <button type="submit" disabled={buttonDisabled}>Log In</button>
             </form>
+            }
         </Wrapper>
     );
 };
 
-export default connect( () => null, {})(Login);
+const mapStateToProps = (state) => {
+    return {
+        isLoadingLogin: state.is_loading_login,
+        
+        loginSuccess: state.login_success,
+        error: state.error,
+    }
+}
+
+export default connect( mapStateToProps, {loginToApp} )(Login);
 
 
 
