@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { connect } from "react-redux";
@@ -6,14 +7,47 @@ import styled from 'styled-components';
 // import { initialState } from "../reducers/plantReducer";
 import * as Yup from 'yup';
 
+
 const Wrapper = styled.div`
     width: 50%;
-    padding: 25px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    border: 1px solid blue;
+    justify-content: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    button {
+        margin: 15px 0;
+        border: none;
+        background-color: #d3d3d3;
+        background-color: white;
+        border: 2px solid #d3d3d3;
+
+        &:hover {
+            background-color: #d3d3d3;
+            border: 2px solid black;
+        }
+
+        &:disabled {
+            border: 2px solid orange;
+            cursor: not-allowed;
+        }
+    }
+    label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+    }
+    input {
+        border: 1px solid #d3d3d3;
+        text-align: center;
+    }
 `
+
 
 
 const Registration = (props) => {
@@ -72,6 +106,7 @@ const Registration = (props) => {
                 <Skeleton variant="text"/>
                 <Skeleton variant="text"/>
                 <Skeleton variant="rect"/>
+
             </form>
         ) : props.error ? (
             <div className="error">{props.error}</div>
