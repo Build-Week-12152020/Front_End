@@ -47,11 +47,12 @@ const Login = (props) => {
     // component level state
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [loginCredentls, setLoginCredntls] = useState({
-        username: '',
-        password: '',
-    })
+        username: "",
+        password: ""
+    });
 
-    const history = useHistory()
+    let history = useHistory();
+
 
     const handleChanges = (e) => {
         setLoginCredntls({ ...loginCredentls, [e.target.name]: e.target.value })
