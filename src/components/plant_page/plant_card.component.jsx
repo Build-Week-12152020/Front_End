@@ -6,15 +6,15 @@ const PlantCard = (props) => {
     return (
         <div className="plant_card">
             <header className="plant_name">
-    <h3>Plant Name</h3>
+    <h3>{props.name}</h3>
             </header>
             <div className="plant_info">
-                <h4 className="plant_species">Species</h4>
-                <h4 className="h2o_freq">H20 Frequency</h4>
+    <h4 className="plant_species">{props.species}</h4>
+    <h4 className="h2o_freq">{props.water_frequency}</h4>
             </div>
 
         </div>
     )
 };
 
-export default Friend;
+export default PlantCard;

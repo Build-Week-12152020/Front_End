@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { loginToApp } from '../actions'
-import styled from 'styled-components'
-import * as Yup from 'yup'
-import Skeleton from 'react-loading-skeleton'
+
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from "react-redux";
+import { loginToApp } from "../actions";
+import styled from 'styled-components';
+import * as Yup from 'yup';
+import Skeleton from 'react-loading-skeleton';
+
 
 const Wrapper = styled.div`
     width: 50%;
@@ -46,9 +49,15 @@ const Login = (props) => {
     // component level state
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [loginCredentls, setLoginCredntls] = useState({
-        username: '',
-        password: '',
-    })
+
+        username: "",
+        password: ""
+    });
+
+    const history = useHistory();
+
+    
+
 
     const handleChanges = (e) => {
         setLoginCredntls({ ...loginCredentls, [e.target.name]: e.target.value })
@@ -61,11 +70,15 @@ const Login = (props) => {
         // action from props/connect with loginCredentls passed as param
         props.loginToApp(loginCredentls)
         setLoginCredntls({
-            username: '',
-            password: '',
-        })
-        this.props.history.push('./login')
-    }
+
+            username: "",
+            password: ""
+        });
+        history.push('/plantlist');
+    };
+
+    
+
 
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Username is required!'),
