@@ -9,6 +9,8 @@ export const initialState = {
     login_error: false,
     is_loading_plants: false,
     plantlist: [],
+    current_user: {},
+    is_editing: false,
     error: ""
 };
 
@@ -25,6 +27,7 @@ const plantReducer = (state= initialState, action) => {
                 ...state,
                 is_loading_login: false,
                 login_success: true,
+                current_user: action.payload,
                 error: ""
             }
         }
@@ -78,6 +81,12 @@ const plantReducer = (state= initialState, action) => {
                 is_loading_plants: false,
                 error: action.payload
             };
+        }
+        case "IS_EDITING": {
+            return {
+                ...state,
+                is_editing: true
+            }
         }
         default:
             return state;

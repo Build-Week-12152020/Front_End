@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from './components/login_page/login_page.component';
+import PlantPage from './components/plant_page/plant_page.component';
 // import AddPlant from './components/AddPlantForm';
 
 import thunk from "redux-thunk";
@@ -34,7 +35,7 @@ export default function App() {
                                 <Link to="/login"> Login</Link>
                             </li>
                             <li>
-                                <Link to="/myplants">My Plants</Link>
+                                <Link to="/plantlist">My Plants</Link>
                             </li>
                             <li>
                                 <Link to="/add">Add Plant</Link>
@@ -50,7 +51,7 @@ export default function App() {
                     {/* main content */}
                     <div className="main-content">
                         <Switch>
-                            <PrivateRoute exact path="/login" component={LoginPage} />
+                            <PrivateRoute exact path="/plantlist" component={PlantPage} />
                             <Route path="/login" component={LoginPage}  />
                         </Switch>
                     </div>
