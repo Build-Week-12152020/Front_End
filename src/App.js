@@ -26,7 +26,7 @@ export default function App() {
                 <div className="App">
                     <header className="App-header">
                         <div className="App-logo">
-                            <h1> Water My Plants</h1>
+                            <h1>Water My Plants</h1>
                         </div>
                         {/* nav bar */}
                         <ul className="nav" >
@@ -58,7 +58,8 @@ export default function App() {
                 </div>
             </Router>
         </Provider>
-    );
+);
+    
 }
 
 
