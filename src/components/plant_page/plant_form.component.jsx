@@ -37,6 +37,7 @@ const PlantForm = () => {
                     placeholder="Watering Frequency"
                     onChange={handleChanges}
                 />
+                <button onClick={}></button>
             </form>
         </>
     )
