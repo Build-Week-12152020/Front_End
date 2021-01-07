@@ -20,58 +20,62 @@ const regURL = `https://water-my-plants-tracker.herokuapp.com/api/users/register
 const plantsURL = `https://water-my-plants-tracker.herokuapp.com/api/plants`;
 const plantsWUserURL = `https://water-my-plants-tracker.herokuapp.com/api/plants/users/${initialState.current_user.id}`
 
+
 export const registerUser = (data) => (dispatch) => {
     dispatch({
-        type: IS_LOADING_REGISTER
-    });
+        type: IS_LOADING_REGISTER,
+    })
 
     axiosWithAuth()
         .post(regURL, data)
         .then((res) => {
             localStorage.setItem('token', res.data.token)
-            console.log(`ab: actions: registerUser: res:`, res);
+            console.log(`ab: actions: registerUser: res:`, res)
             dispatch({
                 type: REGISTER_SUCCESS,
+
                 payload: res.data.user
+
             })
         })
         .catch((err) => {
-            console.error(err);
+            console.error(err)
             dispatch({
-                type: REGISTER_FAILURE
+                type: REGISTER_FAILURE,
             })
         })
-};
+}
 
 export const loginToApp = (data) => (dispatch) => {
     dispatch({
-        type: IS_LOADING_LOGIN
-    });
-
-    
+        type: IS_LOADING_LOGIN,
+    })
 
     axiosWithAuth()
         .post(loginURL, data)
         .then((res) => {
-            console.log(`ab: actions: loginToApp: res:`,res);
-            localStorage.setItem('token', res.data.token);
+            console.log(`ab: actions: loginToApp: res:`, res)
+            localStorage.setItem('token', res.data.token)
             dispatch({
                 type: LOGIN_SUCCESS,
+
                 payload: res.data.user
+
             })
         })
         .catch((err) => {
-            console.error(err);
+            console.error(err)
             dispatch({
-                type: LOGIN_FAILURE
+                type: LOGIN_FAILURE,
             })
         })
-};
+}
 
 export const loadPlantlist = (data) => (dispatch) => {
     dispatch({
-        type: IS_LOADING_PLANTS
-    });
+        type: IS_LOADING_PLANTS,
+    })
+
 
     axiosWithAuth()
         .get(plantsURL)
@@ -98,4 +102,5 @@ export const addPlant = (data) => (dispatch) => {
     
     axiosWithAuth()
         .post(plantsWUserURL, data)
+
 }
