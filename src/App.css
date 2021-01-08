@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family="Source+Sans+Pro');
 body {
-    width: 85vw;
+    width: 60vw;
     height:100vh;
     margin: 1vh auto; 
     background: rgb(73,252,212);
@@ -11,12 +11,10 @@ body {
 .App {
     text-align: center;
     background-color: white;
-    border: 2px solid black;
-    border-radius: 2%;
+    border: 1px solid black;
+    border-radius: 15px;
+    min-height: 90vh;
 }
-
-
-
 .App-logo {
     display: inline;
     width: 30%
@@ -43,7 +41,15 @@ h1{
     flex-direction: row;
     justify-content: space-between;
     justify-self: flex-end;
-    align-self: flex-end;
+    align-self: center;
     width: 50%;
+    font-weight: 1000;
+    }
+
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: "Raleway", Helvetica, sans-serif;
+    letter-spacing: 0.00345;
 }
 
