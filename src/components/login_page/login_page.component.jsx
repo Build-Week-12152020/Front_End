@@ -7,7 +7,8 @@ import Registration from './registration.component'
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-content:center;
     border-top: 1px black solid;
 `
 
