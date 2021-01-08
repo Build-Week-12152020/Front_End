@@ -8,11 +8,42 @@ import * as Yup from 'yup';
 
 const Wrapper = styled.div`
     width: 50%;
-    padding: 25px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    border: 1px solid blue;
+    justify-content: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    button {
+        margin: 15px 0;
+        border: none;
+        background-color: #d3d3d3;
+        background-color: white;
+        border: 2px solid #d3d3d3;
+
+        &:hover {
+            background-color: #d3d3d3;
+            border: 2px solid black;
+        }
+
+        &:disabled {
+            border: 2px solid orange;
+            cursor: not-allowed;
+        }
+    }
+    label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+    }
+    input {
+        border: 1px solid #d3d3d3;
+        text-align: center;
+    }
 `
 
 
@@ -54,74 +85,70 @@ const Registration = (props) => {
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Username is required!'),
         password: Yup.string().required('Password is required!'),
-        })
+    })
 
     useEffect(() => {
-                formSchema.isValid(newUser).then((valid) => {
-                    setButtonDisabled(!valid)
-                })
-            }, [newUser])
-
+        formSchema.isValid(newUser).then((valid) => {
+            setButtonDisabled(!valid)
+        })
+    }, [newUser, formSchema])
 
     return (
-    <Wrapper>{
-        props.isLoadingRegister ? (
-            <form>
-                <Skeleton variant="text"/>
-                <Skeleton variant="text"/>
-                <Skeleton variant="text"/>
-                <Skeleton variant="rect"/>
-            </form>
-        ) : props.error ? (
-            <div className="error">{props.error}</div>
-        ) :
-        
-            <form onSubmit={handleSubmit}>
-                <header className="form-header">
-                    <h4>
-                        Sign Up
-                    </h4>
-                </header>
-                <label htmlFor="username">
-                    Username
-                    <input 
-                        id="username"
-                        type="text" 
-                        name="username" 
-                        value={newUser.username}
-                        onChange={handleChanges}
-                        placeholder="Name" 
-                    />
-                </label>
-                
-                <label htmlFor="password">
-                    Password
-                    <input
-                        id="password"
-                        type="password" 
-                        name="password"
-                        value={newUser.password}
-                        onChange={handleChanges} 
-                        placeholder="********" 
-                    />
-                </label>
-                
-                <label htmlFor="phone">
-                    Mobile Number
-                    <input
-                        id="phone"
-                        type="number"
-                        name="phone"
-                        value={newUser.phone}
-                        onChange={handleChanges}
-                        placeholder="(123) 456-7890"
-                        />
-                </label>
-                <button disabled={buttonDisabled}>Register</button>
-            </form>   
-        
-        
-             
+        <Wrapper>
+            {
+                props.isLoadingRegister ? (
+                    <form>
+                        <Skeleton variant="text" />
+                        <Skeleton variant="text" />
+                        <Skeleton variant="text" />
+                        <Skeleton variant="rect" />
+                    </form>
+                ) : props.error ? (
+                    <div className="error">{props.error}</div>
+                ) : (
+                    <form onSubmit={handleSubmit}>
+                        <header className="form-header">
+                            <h4>Sign Up</h4>
+                        </header>
+                        <label htmlFor="username">
+                            Username
+                            <input
+                                id="username"
+                                type="text"
+                                name="username"
+                                value={newUser.username}
+                                onChange={handleChanges}
+                                placeholder="Name"
+                            />
+                        </label>
+
+                        <label htmlFor="password">
+                            Password
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={newUser.password}
+                                onChange={handleChanges}
+                                placeholder="********"
+                            />
+                        </label>
+
+                        <label htmlFor="phone">
+                            Mobile Number
+                            <input
+                                id="phone"
+                                type="number"
+                                name="phone"
+                                value={newUser.phone}
+                                onChange={handleChanges}
+                                placeholder="(123) 456-7890"
+                            />
+                        </label>
+                        <button disabled={buttonDisabled}>Register</button>
+                    </form>
+                )
+
                 // <Wrapper>
                 //     <form onSubmit={handleSubmit}>
                 //         <header className="form-header">
