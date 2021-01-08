@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { connect } from "react-redux";
 import { updatePlant, deletePlant } from "../actions";
 import styled from 'styled-components';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router';
+
 
 const UpdatePlant = (props) => {
     const [plantSearch, setPlantSearch] = useState({
@@ -27,6 +27,7 @@ const UpdatePlant = (props) => {
         props.updatePlant(plantSearch, props.plantIsEditing.id);
         history.push('/plantlist');
     };
+
 
     const handleDelete = (e) => {
         e.preventDefault();
