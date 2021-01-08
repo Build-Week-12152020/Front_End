@@ -2,37 +2,45 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { connect } from "react-redux";
-import { addPlant } from "../actions";
+import { updatePlant, deletePlant } from "../actions";
 import styled from 'styled-components';
 import * as Yup from 'yup';
 
 
-const PlantForm = (props) => {
+const UpdatePlant = (props) => {
     const [plantSearch, setPlantSearch] = useState({
-        species: '',
-        name: '',
-        water_frequency: '',
+        species: props.plantIsEditing.species,
+        name: props.plantIsEditing.name,
+        water_frequency: props.plantIsEditing.water_frequency,
     })
 
-    let history = useHistory();
+    const history = useHistory();
 
     const handleChanges = (e) => {
         setPlantSearch({ ...plantSearch, [e.target.name]: e.target.value })
         console.log(plantSearch)
     }
 
-    const handleAdd = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.addPlant(plantSearch, props.currentUser.id);
+        props.updatePlant(plantSearch, props.plantIsEditing.id);
         history.push('/plantlist');
     };
+
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        props.deletePlant(props.plantIsEditing.id);
+        history.push('/plantlist')
+    }
     
     return (
         <>
-            <form onSubmit={handleAdd}>
+            <form onSubmit={handleSubmit}>
                 <header className="form-header">
-    <h4>Add a Plant ! {props.currentUser.id}</h4>
+    <h4>Edit your {props.plantIsEditing.species} ! </h4>
                 </header>
                 <label htmlFor="name" />
                 <input
@@ -61,7 +69,10 @@ const PlantForm = (props) => {
                     onChange={handleChanges}
                     value={plantSearch.water_frequency}
                 />
-                <button > Add </button>
+                <button > Update </button>
+            </form>
+            <form onSubmit={handleDelete}>
+                <button>Delete Plant</button>
             </form>
         </>
     )
@@ -69,12 +80,14 @@ const PlantForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        addPlantLoad: state.add_plant_loading,
-        addPlantError: state.add_plant_error,
-        addPlantSuccess: state.add_plant_success,
+        updatePlantLoad: state.update_plant_loading,
+        updatePlantError: state.update_plant_error,
+        updatePlantSuccess: state.update_plant_success,
+        isEditing: state.is_editing,
+        plantIsEditing: state.plant_isediting,
         currentUser: state.current_user,
         error: state.error
     }
 }
 
-export default connect(mapStateToProps, { addPlant })(PlantForm);
+export default connect(mapStateToProps, { updatePlant, deletePlant  })(UpdatePlant);

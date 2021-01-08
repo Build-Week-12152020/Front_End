@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import Skeleton from 'react-loading-skeleton'
-import { connect } from 'react-redux'
-import { registerUser } from '../actions'
-import styled from 'styled-components'
-import * as Yup from 'yup'
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import { connect } from "react-redux";
+import { registerUser } from "../actions";
+import styled from 'styled-components';
+import * as Yup from 'yup';
 
 const Wrapper = styled.div`
 color:#0e2923;
@@ -76,32 +77,41 @@ h4{
 }
 `
 
+
 const Registration = (props) => {
+    
     // component level state
-    const [buttonDisabled, setButtonDisabled] = useState(true)
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [newUser, setNewUser] = useState({
-        username: '',
-        password: '',
-        phone: '',
-    })
+        username: "",
+        password: "",
+        phone: ""
+    });
+
+    let history = useHistory();
+    
 
     const handleChanges = (e) => {
-        setNewUser({ ...newUser, [e.target.name]: e.target.value })
-        console.log(newUser)
-    }
+        setNewUser({...newUser,
+        [e.target.name]: e.target.value
+        });
+        console.log(newUser);
+    };
 
     const handleSubmit = (e) => {
         // prevent default page reload
 
-        e.preventDefault()
+        e.preventDefault();
         // action from actions>index.js
-        props.registerUser(newUser)
+        props.registerUser(newUser);
         setNewUser({
-            username: '',
-            password: '',
-            phone: '',
-        })
-    }
+            username: "",
+            password: "",
+            phone: ""
+        });
+        history.push('/plantlist')
+    };
+
 
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Username is required!'),
@@ -180,28 +190,28 @@ const Registration = (props) => {
                 //         </header>
                 //         <label htmlFor="username">
                 //             Username
-                //             <input
+                //             <input 
                 //                 id="username"
-                //                 type="text"
-                //                 name="name"
+                //                 type="text" 
+                //                 name="name" 
                 //                 value={newUser.username}
                 //                 onChange={handleChanges}
-                //                 placeholder="Name"
+                //                 placeholder="Name" 
                 //             />
                 //         </label>
-
+                        
                 //         <label htmlFor="password">
                 //             Password
                 //             <input
                 //                 id="password"
-                //                 type="password"
+                //                 type="password" 
                 //                 name="password"
                 //                 value={newUser.password}
-                //                 onChange={handleChanges}
-                //                 placeholder="********"
+                //                 onChange={handleChanges} 
+                //                 placeholder="********" 
                 //             />
                 //         </label>
-
+                        
                 //         <label htmlFor="phone">
                 //             Mobile Number
                 //             <input
@@ -214,12 +224,14 @@ const Registration = (props) => {
                 //                 />
                 //         </label>
                 //         <button>Register</button>
-                //     </form>
+                //     </form>   
                 // </Wrapper>
-            }
-        </Wrapper>
+                
+            
+        
+    }</Wrapper>
     )
-}
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -229,7 +241,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { registerUser })(Registration)
+export default connect( mapStateToProps, { registerUser })(Registration);
+
+
 
 /* <header className="form-header">
                 <h4>
@@ -239,28 +253,28 @@ export default connect(mapStateToProps, { registerUser })(Registration)
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                     Username
-                    <input
+                    <input 
                         id="username"
-                        type="text"
-                        name="name"
+                        type="text" 
+                        name="name" 
                         value={newUser.username}
                         onChange={handleChanges}
-                        placeholder="Name"
+                        placeholder="Name" 
                     />
                 </label>
-
+                
                 <label htmlFor="password">
                     Password
                     <input
                         id="password"
-                        type="password"
+                        type="password" 
                         name="password"
                         value={newUser.password}
-                        onChange={handleChanges}
-                        placeholder="********"
+                        onChange={handleChanges} 
+                        placeholder="********" 
                     />
                 </label>
-
+                
                 <label htmlFor="phone">
                     Mobile Number
                     <input

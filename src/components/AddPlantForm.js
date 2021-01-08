@@ -1,13 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "./utils/axiosWithAuth";
+import { addPlant } from "./actions/index";
 
 class AddPlant extends React.Component {
     state = {
         plantData: {
-            nickname: '',
             species: '',
-            h20Freq: '',
+            name: '',
+            water_frequency: '',
         }
     };
 
@@ -18,20 +19,13 @@ class AddPlant extends React.Component {
                 [e.target.name]: e.target.value
             }
         });
+        console.log(this.state.plantData)
     };
 
     addPlant = e => {
         e.preventDefault();
 
-        axiosWithAuth()
-            .post("http://apihere", this.state.plantData)
-            .then((res) => {
-                console.log(`WaterMyPlants: AddPlantForm.js: addPlant(): res:`, res)
-                this.props.history.push('/plantlist')
-            })
-            .catch((err) => {
-                console.error(err.response)
-            })
+        addPlant(this.state.plantData)
     };
 
     render() {
@@ -47,7 +41,7 @@ class AddPlant extends React.Component {
                             type="text"
                             id="name"
                             name="name"
-                            value={this.state.plantData.nickname}
+                            value={this.state.plantData.name}
                             onChange={this.handleChange}
                         />
                     </label>
@@ -61,13 +55,13 @@ class AddPlant extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
-                    <label htmlFor="h20">
+                    <label htmlFor="water_frequency">
                         How Much Water?
                         <input
                             type="text"
-                            id="h20"
-                            name="h20"
-                            value={this.state.plantData.h20Freq}
+                            id="water_frequency"
+                            name="water_frequency"
+                            value={this.state.plantData.water_frequency}
                             onChange={this.handleChange}
                         />
                     </label>

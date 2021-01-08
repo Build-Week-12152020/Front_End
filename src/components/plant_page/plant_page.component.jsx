@@ -28,6 +28,15 @@ const PlantPage = (props) => {
                 <Skeleton>
                     <PlantCard />
                 </Skeleton>
+                <Skeleton>
+                    <PlantCard />
+                </Skeleton>
+                <Skeleton>
+                    <PlantCard />
+                </Skeleton>
+                <Skeleton>
+                    <PlantCard />
+                </Skeleton>
             </div>
         ) : props.error ? (
             <div className="error">
@@ -37,9 +46,10 @@ const PlantPage = (props) => {
             <div className="nodata">
                 <h3> No Plants Yet!</h3>
             </div>
-        ) : props.plantlist.map( (element) => {
+        ) : props.plantlist.map( (plant) => {
+            // console.log(plant.name)
             return (
-                <PlantCard plants={element} id={element.id} />
+                <PlantCard plant={plant} key={plant.id} />
             )
         })
     }</section>
