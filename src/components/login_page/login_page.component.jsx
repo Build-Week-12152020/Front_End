@@ -8,8 +8,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid black;
+    border-top: 1px black solid;
 `
+
 
 const LoginPage = () => (
     <Wrapper>
