@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { loadPlantlist } from "../actions";
 import { initialState } from "../reducers/plantReducer";
-
 import styled from 'styled-components';
-
 import Skeleton from "react-loading-skeleton";
 import PlantCard from "./plant_card.component";
 import { connect } from 'react-redux';
 
+const greeting = styled.div`
+    border-top: 1px black solid;
+`    
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content:center;
+    `
 const PlantPage = (props) => {
 
     const [currentPlants, setCurrentPlants] = useState(initialState.plantlist)
@@ -19,9 +27,10 @@ const PlantPage = (props) => {
 
     return (
     <section className="main_content">
-        <div className="user_greeting">
+        <greeting>
     <h1>Hello {props.currentUser.username} !</h1>
-        </div>
+        </greeting>
+    <Wrapper>
         {
         props.isLoadingPlants ? (
             <div className="plantlist_skeletons">
@@ -52,7 +61,8 @@ const PlantPage = (props) => {
                 <PlantCard plant={plant} key={plant.id} />
             )
         })
-    }</section>
+    }</Wrapper></section>
+ 
     )
 }
 
